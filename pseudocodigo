@@ -1,0 +1,34 @@
+inicializar variables (metales, no_metales, boton, mostar, unidades, decenas, led_comun)
+
+
+int main(){
+	En esta seccion, se configura los puertos de entrada y salida del PIC24FJ64GB002.
+	Las entradas se caracteriza como variables.
+	Inicializar 
+	Si la entrada1 (metales) esta en 1, incrementa el valor de la variable 'metales'.
+	Si la entrada2 (no metales) esta en 1, incrementa el valor de la variable 'no_metales'.
+	Si la entrada boton='0' boton=boton, si la entrada esta en 1 boton=boton!
+	Si boton='0' mostrar 'metales'. 
+	Si boton='1' mostrar 'no_metales'.
+
+}
+
+int mostrar_metales(){
+	mostrar='metales'
+	unidades_decenas();
+
+}
+
+int mostrar_no_metales(){
+	mostrar='no_metales'
+	unidades_decenas();
+}
+
+int unidades_decenas(){
+	if mostrar > 10{
+		mostrar = mostrar - 10
+		decenas = +1 }
+	else{
+		unidades=mostrar }
+	
+	
