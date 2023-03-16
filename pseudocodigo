@@ -1,4 +1,4 @@
-inicializar variables (metales, no_metales, boton, mostar, unidades, decenas, led_comun)
+inicializar variables (metales, no_metales, boton, mostar, unidades, decenas, led_comun, salida)
 
 
 int main(){
@@ -10,13 +10,11 @@ int main(){
 	Si la entrada boton='0' boton=boton, si la entrada esta en 1 boton=boton!
 	Si boton='0' mostrar 'metales'. 
 	Si boton='1' mostrar 'no_metales'.
-
 }
 
 int mostrar_metales(){
 	mostrar='metales'
 	unidades_decenas();
-
 }
 
 int mostrar_no_metales(){
@@ -30,5 +28,56 @@ int unidades_decenas(){
 		decenas = +1 }
 	else{
 		unidades=mostrar }
-	
-	
+	numeros_unidades();
+	led_comun=1;
+	__delay;
+	numeros_decenas();
+	led_comun=2;
+	__delay
+}
+
+int numeros_unidades(){
+	if unidades == 0{
+		salida=64}
+	if unidades == 1{
+		salida=121 }
+	if unidades == 2{
+		salida=36}
+	if unidades == 3{
+		salida=48}
+	if unidades == 4{
+		salida=25}
+	if unidades == 5{
+		salida=18}
+	if unidades == 6{
+		salida=2}
+	if unidades == 7{
+		salida=120}
+	if unidades == 8{
+		salida=0}
+	else{
+		salida=16}
+}
+
+int numeros_decenas(){
+	if decenas == 0{
+		salida=64}
+	if decenas == 1{
+		salida=121 }
+	if decenas == 2{
+		salida=36}
+	if decenas == 3{
+		salida=48}
+	if decenas == 4{
+		salida=25}
+	if decenas == 5{
+		salida=18}
+	if decenas == 6{
+		salida=2}
+	if decenas == 7{
+		salida=120}
+	if decenas == 8{
+		salida=0}
+	else{
+		salida=16}
+}
