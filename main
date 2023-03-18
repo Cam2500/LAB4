@@ -1,0 +1,99 @@
+#include "xc.h"
+#define FCY 4000000
+#include <libpic30.h>
+
+int metales = 0;
+int no_metales = 0;
+int boton = 0;
+int mostrar = 0;
+int unidades = 0;
+int decenas = 0;
+int led_comun = 0;
+int compr=0;
+
+int main(void) {
+    AD1PCFG = 0xFFFF;
+    
+    TRISA = 0;
+    TRISB = 1;
+    
+    int in1 = 0;
+    int in2 = 0;
+    
+    in1 = TRISAbits.TRISA0;
+    in2 = TRISAbits.TRISA1;
+    boton = TRISAbits.TRISA2;
+    
+    while(1){
+        if (in1 == 1){ 
+            metales = metales+1;
+        }
+        if (in2 == 1){
+            no_metales=no_metales+1;
+        }
+        if (boton == 1){
+            boton=!boton;
+            mostrar_no_metales();
+        }
+        else{
+            boton = boton;
+            mostrar_metales();
+        }
+    }
+   return 0;
+}
+
+void mostrar_metales(){
+    mostrar = metales;
+    unidades_decenas();
+}
+
+void mostrar_no_metales(){
+    mostrar = no_metales;
+    unidades_decenas();
+}
+
+void unidades_decenas(){
+    if (mostrar > 10){
+        mostrar = mostrar - 10;
+        decenas = decenas + 1;
+    }
+    else{
+        unidades=mostrar;
+    }
+    compr=unidades;
+    numeros_unidades();
+    LATBbits.LATB10 = 1;
+    LATBbits.LATB11 = 0;
+    //led_comun = 1;
+    __delay_ms(1);
+    compr=decenas;
+    numeros_unidades();
+    LATBbits.LATB10 = 0;
+    LATBbits.LATB11 = 1;
+    //led_comun = 2;
+    __delay_ms(1);
+}
+
+void numeros_unidades(){
+    if (compr == 0){
+        PORTB=64;}
+    if (compr == 1){
+        PORTB=121;}
+    if (compr == 2){
+        PORTB=36;}
+    if (compr == 3){
+        PORTB=48;}
+    if (compr == 4){
+        PORTB=25;}
+    if (compr == 5){
+        PORTB=18;}
+    if (compr == 6){
+        PORTB=2;}
+    if (compr == 7){
+        PORTB=120;}
+    if (compr == 8){
+        PORTB=0;}
+    else{
+        PORTB=16;}    
+}
